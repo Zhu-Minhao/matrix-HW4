@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-
+plt.rcParams['text.usetex'] = True
 
 # Define the MUSIC function
 def MUSIC(M, N, sigma_s):
@@ -31,13 +31,15 @@ def MUSIC(M, N, sigma_s):
 
 # Plot setup
 plt.figure(figsize=(10, 6))
-for i, params in enumerate([(10, 500, 10), (10, 50000, 10), (30, 500, 10), (10, 500, 100)], start=1):
+plt.figure(dpi=1200)
+for i, params in enumerate([(10, 500, 1), (10, 20000, 1), (30, 500, 1), (10, 500, 10)], start=1):
     theta_x, pseudo_spectrum = MUSIC(*params)
-    plt.plot(theta_x, pseudo_spectrum, linewidth=1.5, label=f'M={params[0]}, N={params[1]}, sigma_s^2={params[2]}')
+    plt.plot(theta_x, pseudo_spectrum, linewidth=1.5, label=fr'$M={params[0]},\ N={params[1]},\ \sigma_s^2={params[2]}$')
 
 plt.legend()
 plt.grid(True)
 plt.xlabel('Theta')
-plt.ylabel('Pseudo Spectrum (dB)')
-plt.axis([-100, 100, -70, 20])
+plt.ylabel('Spectrum (dB)')
+plt.axis([-100, 100, -60, 10])
+
 plt.show()
