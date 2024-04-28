@@ -20,21 +20,20 @@ def MUSIC(M, N, sigma_s):
     V_2 = V[:, :M - K]  # Noise subspace
 
     theta_x = np.linspace(-100, 100, 200001)  # Fine angle sweep
-    pseudo_spectrum = np.zeros(theta_x.shape)
+    spectrum = np.zeros(theta_x.shape)
     for i, theta in enumerate(theta_x):
         alpha = np.exp(1j * np.pi * np.sin(np.radians(theta)) * np.arange(M))
-        pseudo_spectrum[i] = 1 / np.linalg.norm(V_2.conj().T @ alpha) ** 2
+        spectrum[i] = 1 / np.linalg.norm(V_2.conj().T @ alpha) ** 2
 
-    pseudo_spectrum = 10 * np.log10(pseudo_spectrum / np.max(pseudo_spectrum))  # Convert to dB
-    return theta_x, pseudo_spectrum
+    spectrum = 10 * np.log10(spectrum / np.max(spectrum))  # Convert to dB
+    return theta_x, spectrum
 
 
 # Plot setup
 plt.figure(figsize=(10, 6))
 for i, params in enumerate([(10, 500, 10), (10, 50000, 10), (30, 500, 10), (10, 500, 100)], start=1):
     theta_x, pseudo_spectrum = MUSIC(*params)
-    plt.plot(theta_x, pseudo_spectrum, linewidth=1.5,
-             label=f'M={params[0]}, N={params[1]}, sigma_s^2={params[2]}')
+    plt.plot(theta_x, pseudo_spectrum, linewidth=1.5, label=f'M={params[0]}, N={params[1]}, sigma_s^2={params[2]}')
 
 plt.legend()
 plt.grid(True)
