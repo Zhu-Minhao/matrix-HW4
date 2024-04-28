@@ -37,16 +37,16 @@ color_RGB = np.array([
 
 # Generate data using MUSIC algorithm
 theta_x_1, pseudo_spectrum_1 = MUSIC_gys(10, 500, 10)
-theta_x_2, pseudo_spectrum_2 = MUSIC_gys(10, 50000, 10)
-theta_x_3, pseudo_spectrum_3 = MUSIC_gys(30, 500, 10)
-theta_x_4, pseudo_spectrum_4 = MUSIC_gys(10, 500, 100)
+# theta_x_2, pseudo_spectrum_2 = MUSIC_gys(10, 50000, 10)
+# theta_x_3, pseudo_spectrum_3 = MUSIC_gys(30, 500, 10)
+# theta_x_4, pseudo_spectrum_4 = MUSIC_gys(10, 500, 100)
 
 # Plotting
 plt.figure()
 plt.plot(theta_x_1, pseudo_spectrum_1, label='M=10, N=500, sigma_s^2 = 1')
-plt.plot(theta_x_2, pseudo_spectrum_2, label='M=10, N=50000, sigma_s^2 = 1')
-plt.plot(theta_x_3, pseudo_spectrum_3, label='M=30, N=500, sigma_s^2 = 1')
-plt.plot(theta_x_4, pseudo_spectrum_4, label='M=10, N=500, sigma_s^2 = 10')
+# plt.plot(theta_x_2, pseudo_spectrum_2, label='M=10, N=50000, sigma_s^2 = 1')
+# plt.plot(theta_x_3, pseudo_spectrum_3, label='M=30, N=500, sigma_s^2 = 1')
+# plt.plot(theta_x_4, pseudo_spectrum_4, label='M=10, N=500, sigma_s^2 = 10')
 plt.legend()
 plt.grid(True)
 plt.xlabel('Theta')
