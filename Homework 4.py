@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 plt.rcParams['text.usetex'] = True
 
 # Define the MUSIC function
-def MUSIC(M, N, sigma_s):
-    sigma_w = 1
+def MUSIC(M, N, sigma_w):
+    sigma_s = 1
     theta_k = np.radians(np.array([0, 30, -60]))  # Convert degrees to radians
     K = len(theta_k)
     A = np.zeros((M, K), dtype=complex)
@@ -29,17 +29,17 @@ def MUSIC(M, N, sigma_s):
     return theta_x, spectrum
 
 
+# parameters = [(10, 500, 1), (10, 5000, 1), (30, 500, 1), (10, 500, 10)]
+parameters = [(10, 500, 1)]
 # Plot setup
-plt.figure(figsize=(10, 6))
-plt.figure(dpi=1200)
-for i, params in enumerate([(10, 500, 1), (10, 20000, 1), (30, 500, 1), (10, 500, 10)], start=1):
+plt.figure(dpi=100)
+for i, params in enumerate(parameters, start=1):
     theta_x, pseudo_spectrum = MUSIC(*params)
-    plt.plot(theta_x, pseudo_spectrum, linewidth=1.5, label=fr'$M={params[0]},\ N={params[1]},\ \sigma_s^2={params[2]}$')
+    plt.plot(theta_x, pseudo_spectrum, linewidth=1.5, label=fr'$M={params[0]},\ N={params[1]},\ \sigma_w^2={params[2]}$')
 
 plt.legend()
 plt.grid(True)
 plt.xlabel('Theta')
 plt.ylabel('Spectrum (dB)')
 plt.axis([-100, 100, -60, 10])
-
 plt.show()
